@@ -598,7 +598,7 @@ async function sendAdminRequestPing(
   try {
     const channelId =
       process.env
-        .DEALS_ADMIN_CHANNEL_ID;
+        .MARKETPLACE_ADMIN_CHANNEL_ID;
 
     const adminUserId =
       process.env
@@ -797,7 +797,7 @@ function productMedia(product, prefix = "product") {
   if (product.image_key) {
     return {
       url:
-        `https://partnerlinks.app/api/products/${encodeURIComponent(
+        `https://framepoint.app/api/products/${encodeURIComponent(
           product.id
         )}/image?v=${encodeURIComponent(
           product.updated_at || Date.now()
@@ -2600,7 +2600,7 @@ async function refreshRequestDashboardIfChanged(
 async function ensurePublicMessage() {
   const channel =
     await client.channels.fetch(
-      process.env.DEALS_CHANNEL_ID
+      process.env.MARKETPLACE_CHANNEL_ID
     );
 
   if (
@@ -2608,7 +2608,7 @@ async function ensurePublicMessage() {
     !channel.isTextBased()
   ) {
     throw new Error(
-      "DEALS_CHANNEL_ID is invalid"
+      "MARKETPLACE_CHANNEL_ID is invalid"
     );
   }
 
@@ -2729,7 +2729,7 @@ async function announceNewDeals() {
 
   const channel =
     await client.channels.fetch(
-      process.env.DEALS_CHANNEL_ID
+      process.env.MARKETPLACE_CHANNEL_ID
     );
 
   if (
@@ -2737,7 +2737,7 @@ async function announceNewDeals() {
     !channel.isTextBased()
   ) {
     throw new Error(
-      "DEALS_CHANNEL_ID is invalid"
+      "MARKETPLACE_CHANNEL_ID is invalid"
     );
   }
 
@@ -2783,7 +2783,7 @@ async function ensureAdminMessage() {
   const channel =
     await client.channels.fetch(
       process.env
-        .DEALS_ADMIN_CHANNEL_ID
+        .MARKETPLACE_ADMIN_CHANNEL_ID
     );
 
   if (
@@ -2791,7 +2791,7 @@ async function ensureAdminMessage() {
     !channel.isTextBased()
   ) {
     throw new Error(
-      "DEALS_ADMIN_CHANNEL_ID is invalid"
+      "MARKETPLACE_ADMIN_CHANNEL_ID is invalid"
     );
   }
 
@@ -2886,7 +2886,7 @@ function adminOnly(interaction) {
   return (
     interaction.channelId ===
     process.env
-      .DEALS_ADMIN_CHANNEL_ID
+      .MARKETPLACE_ADMIN_CHANNEL_ID
   );
 }
 
@@ -2906,7 +2906,7 @@ client.on(
       "channel:",
       interaction.channelId,
       "expected admin:",
-      process.env.DEALS_ADMIN_CHANNEL_ID
+      process.env.MARKETPLACE_ADMIN_CHANNEL_ID
     );
   }
 
@@ -4380,19 +4380,19 @@ client.once(
     );
 
     if (
-      !process.env.DEALS_CHANNEL_ID
+      !process.env.MARKETPLACE_CHANNEL_ID
     ) {
       throw new Error(
-        "DEALS_CHANNEL_ID is missing from .env"
+        "MARKETPLACE_CHANNEL_ID is missing from .env"
       );
     }
 
     if (
       !process.env
-        .DEALS_ADMIN_CHANNEL_ID
+        .MARKETPLACE_ADMIN_CHANNEL_ID
     ) {
       throw new Error(
-        "DEALS_ADMIN_CHANNEL_ID is missing from .env"
+        "MARKETPLACE_ADMIN_CHANNEL_ID is missing from .env"
       );
     }
 

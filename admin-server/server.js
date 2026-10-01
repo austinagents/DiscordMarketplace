@@ -43,7 +43,7 @@ const r2 =
   });
 
 const PORT = 3002;
-const ORIGIN = "https://partnerlinks.app";
+const ORIGIN = "https://framepoint.app";
 const REDIRECT_URI =
   `${ORIGIN}/admin-auth/callback`;
 

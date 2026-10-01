@@ -823,7 +823,7 @@ async function sendAdminRequestPing(
   try {
     const channelId =
       process.env
-        .DEALS_ADMIN_CHANNEL_ID;
+        .MARKETPLACE_ADMIN_CHANNEL_ID;
 
     const adminUserId =
       process.env
