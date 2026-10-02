@@ -252,7 +252,7 @@ const existingCount = db
   .prepare("SELECT COUNT(*) AS c FROM products")
   .get().c;
 
-if (existingCount === 0) {
+if (false && existingCount === 0) {
   const seed = db.prepare(`
     INSERT INTO products (
       name,

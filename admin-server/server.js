@@ -2030,9 +2030,6 @@ app.post(
       maxCount: 1
     }  ]),
   (req, res) => {
-    const id =
-      safeId(req.body.name);
-
     const active =
       String(req.body.active) ===
       "true"
@@ -2043,9 +2040,9 @@ app.post(
       req.files?.image?.[0] ||
       null;
 
-    db.prepare(`
+    const insertResult =
+      db.prepare(`
       INSERT INTO products (
-        id,
         name,
         brand,
         category,
@@ -2065,11 +2062,9 @@ app.post(
       VALUES (
         ?, ?, ?, ?, ?,
         ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?,
-        ?
+        ?, ?, ?, ?, ?
       )
     `).run(
-      id,
       req.body.name || "",
       req.body.brand || "",
       req.body.category || "Other",
@@ -2107,6 +2102,9 @@ app.post(
 
       active
     );
+
+    const id =
+      Number(insertResult.lastInsertRowid);
 
     saveProductVariants(
       id,

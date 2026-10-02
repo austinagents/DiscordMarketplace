@@ -2631,6 +2631,16 @@
       $("description").value.trim()
     );
 
+    const productImage =
+      $("image").files[0];
+
+    if (productImage) {
+      data.append(
+        "image",
+        productImage
+      );
+    }
+
     data.append(
       "active",
       String(
